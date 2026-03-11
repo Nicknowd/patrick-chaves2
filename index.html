@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Patrick Chaves Chaveiro em Alvorada/RS. Abertura de portas, cópias de chaves, afiação e controles. Atendimento 24h." />
+  <title>Patrick Chaves Chaveiro — Alvorada/RS | 24h</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #FFD600;
+      --primary-dark: #e6c100;
+      --bg: #111;
+      --bg-card: #1a1a1a;
+      --text: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.85);
+      --whatsapp: #25D366;
+      --whatsapp-hover: #20bd5a;
+      --overlay: rgba(0, 0, 0, 0.6);
+      --radius: 12px;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      --transition: 0.3s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; width: 100%; overflow-x: hidden; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* ----- Header ----- */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      background: rgba(17, 17, 17, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 214, 0, 0.2);
+      min-width: 0;
+    }
+    .header__logo {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary);
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .header__logo span { color: var(--text); }
+    .header__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.5rem 0.9rem;
+      background: var(--primary);
+      color: var(--bg);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      border-radius: 8px;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .header__cta:hover {
+      background: var(--primary-dark);
+      transform: scale(1.02);
+    }
+
+    main { width: 100%; min-width: 0; }
+
+    /* ----- Hero ----- preenche toda a largura da tela em qualquer tamanho de janela */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 1.25rem 3rem;
+      overflow: hidden;
+    }
+    /* Background da imagem: preenche toda a hero, sem faixas pretas ao minimizar/ampliar */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: url('static/img/hero-image2.webp') center no-repeat;
+      background-size: cover;
+      filter: blur(6px);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: rgba(0, 0, 0, 0.65);
+    }
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      min-width: 0;
+      width: 100%;
+    }
+    .hero__title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 2rem;
+      color: #FFFFFF;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+    }
+    .hero__title span {
+      color: var(--primary);
+    }
+    .hero__subtitle {
+      font-size: 0.95rem;
+      color: #FFFFFF;
+      opacity: 1;
+      font-weight: 500;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+      margin-bottom: 4.75rem;
+      text-align: left;
+    }
+    .hero__subtitle-icon {
+      width: 1.1rem;
+      height: 1.1rem;
+      vertical-align: middle;
+      margin-right: 0.25rem;
+    }
+    .hero__subtitle-icon--location {
+      width: 1.3rem;
+      height: 1.3rem;
+    }
+    .hero__subtitle-icon--phone {
+      /* Ícone específico amarelo (phone-icon-yellow.svg) apenas no subtítulo */
+    }
+    /* Hero: endereço e telefone já preenchidos (placeholder do telefone até número real) */
+    .hero__ctas {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.5rem;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 10px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+    .btn__icon {
+      width: 1.1rem;
+      height: 1.1rem;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .btn--whatsapp {
+      background: var(--whatsapp);
+      color: #000;
+    }
+    .btn--whatsapp:hover {
+      background: var(--whatsapp-hover);
+      transform: scale(1.02);
+    }
+    .btn--primary {
+      background: var(--primary);
+      color: var(--bg);
+    }
+    .btn--primary:hover {
+      background: var(--primary-dark);
+      transform: scale(1.02);
+    }
+    .btn--outline {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--text);
+    }
+    .btn--outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.02);
+    }
+
+    /* ----- Sections common ----- */
+    /* Apenas seções de conteúdo (não a hero): largura máxima alinhada aos cards */
+    section:not(.hero) {
+      padding: 3rem 1.25rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      min-width: 0; /* permite a seção encolher junto com a tela */
+    }
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--text);
+    }
+    .section-title span { color: var(--primary); }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ----- Serviços ----- */
+    .servicos { background: var(--bg); }
+    .servicos__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      min-width: 0;
+    }
+    .servico-card {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 214, 0, 0.15);
+      box-shadow: var(--shadow);
+      transition: border-color var(--transition), transform var(--transition);
+      min-width: 0;
+    }
+    .servico-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+    }
+    .servico-card__icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .servico-card__title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    .servico-card__desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* ----- Por que escolher ----- */
+    .porque { background: var(--bg-card); }
+    .porque__list {
+      list-style: none;
+      max-width: 560px;
+      margin: 0 auto;
+      min-width: 0;
+    }
+    .porque__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .porque__item:last-child { border-bottom: none; }
+    .porque__check {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    .porque__text { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* ----- Depoimentos ----- */
+    .depoimentos { background: var(--bg); }
+    /* TODO: Substituir depoimentos por avaliações reais de clientes */
+    .depoimentos__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      min-width: 0;
+    }
+    .depoimento-card {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 214, 0, 0.1);
+      min-width: 0;
+    }
+    .depoimento-card__header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .depoimento-card__avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .depoimento-card__name { font-weight: 600; font-size: 0.95rem; }
+    .depoimento-card__stars {
+      color: var(--primary);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    .depoimento-card__text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ----- Contato ----- */
+    .contato { background: var(--bg-card); }
+    .contato__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      min-width: 0;
+    }
+    .contato__map {
+      border-radius: var(--radius);
+      overflow: hidden;
+      height: 280px;
+      background: var(--bg);
+    }
+    .contato__map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    /* Mapa: localização exata do endereço (R. André Puente, 440) */
+    .contato__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .contato__links .btn { flex: 1; min-width: 0; } /* acompanha a tela; em telas largas os botões crescem */
+    .contato__form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-width: 0;
+    }
+    .contato__form label {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .contato__form input,
+    .contato__form select {
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    .contato__form input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .contato__form select option { background: var(--bg); }
+    .contato__form .btn { margin-top: 0.25rem; }
+
+    /* ----- Footer ----- */
+    .footer {
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      background: var(--bg);
+      border-top: 1px solid rgba(255, 214, 0, 0.15);
+      min-width: 0;
+    }
+    .footer__copy {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .footer__links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+    .footer__links a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    .footer__links a:hover { text-decoration: underline; }
+
+    /* ----- Botão flutuante WhatsApp ----- */
+    .float-whatsapp {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 999;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--whatsapp);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .float-whatsapp:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.6);
+    }
+
+    /* ----- Responsive 768px+ ----- */
+    /* Mobile: esconder botão "Ligar Agora" do header */
+    @media (max-width: 767px) {
+      .header__cta { display: none !important; }
+    }
+
+    @media (max-width: 767px) {
+      /* Mobile: botões da hero com mesma largura e conteúdo centralizado */
+      .hero__ctas .btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+      }
+      /* Mobile: ajustar enquadramento da imagem da hero mais para a direita */
+      .hero::after {
+        background-position: 67% center;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .header { padding: 1rem 2rem; }
+      .header__logo { font-size: 1.2rem; }
+
+      /* Desktop: hero mais compacta; headline maior para melhor destaque */
+      .hero {
+        min-height: 80vh;
+        padding: 4rem 2rem 3rem;
+      }
+      .hero__title { font-size: 2.3rem; }
+      .hero__subtitle { margin-bottom: 4.75rem; }
+      .hero__ctas { flex-direction: row; }
+      .section-title { font-size: 2rem; }
+      .servicos__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+      .depoimentos__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .contato__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+      .contato__map { height: 320px; }
+    }
+
+    @media (min-width: 900px) {
+      .servicos__grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header__logo">Patrick Chaves <span>Chaveiro</span></div>
+    <!-- TODO: Substituir pelo número real para ligação (placeholder: (51) 99127-4091) -->
+    <a class="header__cta" href="tel:+5551991274091" aria-label="Ligar agora">
+      <img class="btn__icon" src="static/img/phone-icon.svg" alt="" />
+      Ligar Agora
+    </a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__inner">
+        <h1 class="hero__title">Perdeu a Chave? <span>Patrick Chaves</span> Resolve em Minutos!</h1>
+        <!-- TODO: Substituir pelo número real quando disponível (placeholder: (51) 99127-4091) -->
+        <p class="hero__subtitle">
+          <img class="hero__subtitle-icon hero__subtitle-icon--location" src="static/img/location_16971966.svg" alt="" />
+          R. André Puente, 440 - Americana, Alvorada - RS<br />
+          <img class="hero__subtitle-icon hero__subtitle-icon--phone" src="static/img/phone-icon-yellow.svg" alt="" />
+          (51) 99127-4091
+        </p>
+        <div class="hero__ctas">
+          <!-- TODO: Substituir 555191274091 no formato 5551XXXXXXXX (ex: 5551999999) -->
+          <a class="btn btn--whatsapp" href="https://wa.me/555191274091" target="_blank" rel="noopener">
+            <img class="btn__icon" src="static/img/wpp-icon3.svg" alt="" />
+            Chamar no WhatsApp
+          </a>
+          <a class="btn btn--primary" href="tel:+5551991274091">
+            <img class="btn__icon" src="static/img/phone-icon.svg" alt="" />
+            Ligar Agora
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="servicos" id="servicos">
+      <h2 class="section-title fade-in">Nossos <span>Serviços</span></h2>
+      <div class="servicos__grid">
+        <article class="servico-card fade-in">
+          <div class="servico-card__icon">🔓</div>
+          <h3 class="servico-card__title">Abertura de Portas</h3>
+          <p class="servico-card__desc">Carro, residência ou comércio, sem danos.</p>
+        </article>
+        <article class="servico-card fade-in">
+          <div class="servico-card__icon">🔑</div>
+          <h3 class="servico-card__title">Cópias Codificadas</h3>
+          <p class="servico-card__desc">Chaves automotivas com chip e controle.</p>
+        </article>
+        <article class="servico-card fade-in">
+          <div class="servico-card__icon">✂️</div>
+          <h3 class="servico-card__title">Afiação de Chaves</h3>
+          <p class="servico-card__desc">Afiação precisa para qualquer modelo.</p>
+        </article>
+        <article class="servico-card fade-in">
+          <div class="servico-card__icon">🎛️</div>
+          <h3 class="servico-card__title">Instalação de Controles</h3>
+          <p class="servico-card__desc">Controles remotos e fechaduras eletrônicas.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="porque" id="porque">
+      <h2 class="section-title fade-in">Por Que Escolher o <span>Patrick Chaves?</span></h2>
+      <ul class="porque__list">
+        <li class="porque__item fade-in">
+          <span class="porque__check">
+            <img src="static/img/checkmark-icon.svg" alt="" width="16" height="16" />
+          </span>
+          <span class="porque__text">Atendimento rápido na região metropolitana (Porto Alegre, Cachoeirinha, Gravataí, Alvorada)</span>
+        </li>
+        <li class="porque__item fade-in">
+          <span class="porque__check">
+            <img src="static/img/checkmark-icon.svg" alt="" width="16" height="16" />
+          </span>
+          <span class="porque__text">Preços acessíveis e orçamento sem compromisso</span>
+        </li>
+        <li class="porque__item fade-in">
+          <span class="porque__check">
+            <img src="static/img/checkmark-icon.svg" alt="" width="16" height="16" />
+          </span>
+          <span class="porque__text">Disponível 24 horas, 7 dias por semana</span>
+        </li>
+        <li class="porque__item fade-in">
+          <span class="porque__check">
+            <img src="static/img/checkmark-icon.svg" alt="" width="16" height="16" />
+          </span>
+          <span class="porque__text">Profissional certificado e experiente</span>
+        </li>
+        <li class="porque__item fade-in">
+          <span class="porque__check">
+            <img src="static/img/checkmark-icon.svg" alt="" width="16" height="16" />
+          </span>
+          <span class="porque__text">Atendimento com hora marcada ou emergência</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="depoimentos" id="depoimentos">
+      <h2 class="section-title fade-in">O Que Nossos <span>Clientes Dizem</span></h2>
+      <div class="depoimentos__grid">
+        <div class="depoimento-card fade-in">
+          <div class="depoimento-card__header">
+            <div class="depoimento-card__avatar">B</div>
+            <span class="depoimento-card__name">Brenda Bastos</span>
+          </div>
+          <div class="depoimento-card__stars">⭐⭐⭐⭐⭐</div>
+          <p class="depoimento-card__text">
+            "Bah o Patrick foi super gente boa, resolveu meu problema em meia hora, nota mil pro serviço dele, preço justo e serviço de qualidade. Vale muito a pena."
+          </p>
+        </div>
+        <div class="depoimento-card fade-in">
+          <div class="depoimento-card__header">
+            <div class="depoimento-card__avatar">C</div>
+            <span class="depoimento-card__name">Camille Marion</span>
+          </div>
+          <div class="depoimento-card__stars">⭐⭐⭐⭐⭐</div>
+          <p class="depoimento-card__text">
+            "Sou de Gravataí e contratei os serviços dele, e não me arrependo. Atencioso, educado e gentil, fora que o preço é super em conta. Recomendo sem sombras de dúvidas, melhor serviço."
+          </p>
+        </div>
+        <div class="depoimento-card fade-in">
+          <div class="depoimento-card__header">
+            <div class="depoimento-card__avatar">J</div>
+            <span class="depoimento-card__name">Jonas Souza</span>
+          </div>
+          <div class="depoimento-card__stars">⭐⭐⭐⭐⭐</div>
+          <p class="depoimento-card__text">
+            "Tinha trancado a chave na porta e não conseguia abrir a porta, chamei o Patrick ele mandou o assistente dele e não deu 15 minutos ele destrancou a minha porta que estava trancada e ficou tudo show!!!"
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contato" id="contato">
+      <h2 class="section-title fade-in">Entre em <span>Contato</span></h2>
+      <div class="contato__grid">
+        <div class="fade-in">
+          <!-- Mapa na localização exata: R. André Puente, 440 - Americana, Alvorada - RS -->
+          <div class="contato__map">
+            <iframe
+              src="https://www.google.com/maps?output=embed&amp;q=R.+Andr%C3%A9+Puente,+440+-+Americana,+Alvorada+-+RS"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Patrick Chaves Chaveiro - R. André Puente, 440, Alvorada/RS"
+            ></iframe>
+          </div>
+          <p class="hero__subtitle" style="margin-top:0.75rem;">R. André Puente, 440 - Americana, Alvorada - RS</p>
+          <div class="contato__links">
+            <a class="btn btn--whatsapp" href="https://wa.me/555191274091" target="_blank" rel="noopener">
+              <img class="btn__icon" src="static/img/wpp-icon3.svg" alt="" />
+              WhatsApp
+            </a>
+            <a class="btn btn--primary" href="tel:+5551991274091">
+              <img class="btn__icon" src="static/img/phone-icon.svg" alt="" />
+              Ligar
+            </a>
+          </div>
+        </div>
+        <div class="fade-in">
+          <form class="contato__form" id="form-contato" novalidate>
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+            <label for="servico">Serviço desejado</label>
+            <select id="servico" name="servico" required>
+              <option value="">Selecione...</option>
+              <option value="Abertura de porta">Abertura de porta</option>
+              <option value="Cópia de chave">Cópia de chave</option>
+              <option value="Afiação">Afiação</option>
+              <option value="Controle remoto">Controle remoto</option>
+              <option value="Outro">Outro</option>
+            </select>
+            <label for="whatsapp">WhatsApp</label>
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(51) 99999-9999" required />
+            <button type="submit" class="btn btn--whatsapp">Enviar pelo WhatsApp</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__copy">© 2026 Patrick Chaves Chaveiro — Alvorada/RS</p>
+    <div class="footer__links">
+      <a href="https://wa.me/555191274091" target="_blank" rel="noopener">
+        <img class="btn__icon" src="static/img/wpp-icon3.svg" alt="" />
+        WhatsApp
+      </a>
+      <a href="tel:+5551991274091">
+        <img class="btn__icon" src="static/img/phone-icon.svg" alt="" />
+        Ligar
+      </a>
+    </div>
+  </footer>
+
+  <!-- TODO: Substituir 555191274091 no link do botão flutuante -->
+  <a class="float-whatsapp" href="https://wa.me/555191274091" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">💬</a>
+
+  <script>
+    // Smooth scroll para âncoras
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Fade-in ao rolar (Intersection Observer)
+    var observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('.fade-in').forEach(function(el) {
+      observer.observe(el);
+    });
+
+    // Formulário: montar mensagem e abrir WhatsApp
+    var form = document.getElementById('form-contato');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var nome = document.getElementById('nome').value.trim();
+        var servico = document.getElementById('servico').value;
+        var whatsapp = document.getElementById('whatsapp').value.trim().replace(/\D/g, '');
+        if (!nome || !servico || !whatsapp) return;
+        // TODO: Substituir 555191274091 pelo número real (apenas dígitos, ex: 5551999999999)
+        var numero = '555191274091';
+        var texto = 'Olá, Patrick! Me chamo ' + encodeURIComponent(nome) +
+          '. Gostaria de orçamento para: ' + encodeURIComponent(servico) +
+          '. Meu WhatsApp: ' + encodeURIComponent(whatsapp);
+        var url = 'https://wa.me/' + numero + '?text=' + texto;
+        window.open(url, '_blank');
+      });
+    }
+  </script>
+</body>
+</html>
