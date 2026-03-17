@@ -12,6 +12,8 @@
     :root {
       --primary: #FFD600;
       --primary-dark: #e6c100;
+      --call: #f70707;
+      --call-dark: #d10606;
       --bg: #111;
       --bg-card: #1a1a1a;
       --text: #ffffff;
@@ -67,7 +69,7 @@
       align-items: center;
       gap: 0.35rem;
       padding: 0.5rem 0.9rem;
-      background: var(--primary);
+      background: var(--call);
       color: var(--bg);
       text-decoration: none;
       font-weight: 600;
@@ -76,7 +78,7 @@
       transition: background var(--transition), transform var(--transition);
     }
     .header__cta:hover {
-      background: var(--primary-dark);
+      background: var(--call-dark);
       transform: scale(1.02);
     }
 
@@ -191,11 +193,11 @@
       transform: scale(1.02);
     }
     .btn--primary {
-      background: var(--primary);
+      background: var(--call);
       color: var(--bg);
     }
     .btn--primary:hover {
-      background: var(--primary-dark);
+      background: var(--call-dark);
       transform: scale(1.02);
     }
     .btn--outline {
@@ -285,12 +287,17 @@
       width: 100%;
       margin-top: 1.5rem;
     }
+    .montadoras__tracks-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
     .montadoras__track {
       display: flex;
       align-items: center;
       gap: 2rem;
       width: max-content;
-      animation: montadoras-scroll 40s linear infinite;
+      animation: montadoras-scroll 45s linear infinite;
     }
     .montadoras__track:hover { animation-play-state: paused; }
     .montadoras__item {
@@ -317,9 +324,26 @@
       max-height: 100%;
       object-fit: contain;
     }
+    .montadoras__desc {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin: 1.5rem auto 0;
+      max-width: 560px;
+      text-align: center;
+    }
     @keyframes montadoras-scroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
+    }
+
+    /* CTAs replicados no final de outras seções */
+    .section-ctas { margin-top: 2rem; }
+    .section-ctas .contato__links {
+      margin-top: 0;
+      justify-content: center;
+      max-width: 360px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* ----- Por que escolher ----- */
@@ -454,7 +478,7 @@
     }
     .footer__links a:hover { text-decoration: underline; }
 
-    /* ----- Botão flutuante WhatsApp ----- */
+    /* ----- Botão flutuante WhatsApp (mesma cor do botão WhatsApp da seção Contato) ----- */
     .float-whatsapp {
       position: fixed;
       bottom: 1.5rem;
@@ -468,17 +492,26 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.75rem;
       text-decoration: none;
-      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
-      transition: transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    .float-whatsapp img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
     }
     .float-whatsapp:hover {
+      background: var(--whatsapp-hover);
       transform: scale(1.08);
-      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.6);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
     @media (max-width: 767px) {
+      /* Mobile: carrossel montadoras 20% mais rápido (45s → 37.5s) */
+      .montadoras__track {
+        animation-duration: 37.5s;
+      }
       /* Mobile: esconder botão "Ligar Agora" do header e centralizar logo */
       .header {
         justify-content: center;
@@ -664,25 +697,87 @@
     </section>
 
     <section class="montadoras" id="montadoras">
-      <h2 class="section-title fade-in">Montadoras que <span>trabalhamos</span></h2>
+      <h2 class="section-title fade-in">Principais montadoras que <span>trabalhamos</span></h2>
       <div class="montadoras__carousel-wrap">
-        <div class="montadoras__track">
-          <!-- Conjunto 1 (duplicado para carrossel infinito) -->
-          <div class="montadoras__item"><div class="montadoras__logo" aria-hidden="true">Logo 1</div></div>
-          <div class="montadoras__item"><div class="montadoras__logo" aria-hidden="true">Logo 2</div></div>
-          <div class="montadoras__item"><div class="montadoras__logo" aria-hidden="true">Logo 3</div></div>
-          <div class="montadoras__item"><div class="montadoras__logo" aria-hidden="true">Logo 4</div></div>
-          <div class="montadoras__item"><div class="montadoras__logo" aria-hidden="true">Logo 5</div></div>
-          <div class="montadoras__item"><div class="montadoras__logo" aria-hidden="true">Logo 6</div></div>
-          <!-- Conjunto 2 (réplica para loop contínuo) -->
-          <div class="montadoras__item"><div class="montadoras__logo" aria-hidden="true">Logo 1</div></div>
-          <div class="montadoras__item"><div class="montadoras__logo" aria-hidden="true">Logo 2</div></div>
-          <div class="montadoras__item"><div class="montadoras__logo" aria-hidden="true">Logo 3</div></div>
-          <div class="montadoras__item"><div class="montadoras__logo" aria-hidden="true">Logo 4</div></div>
-          <div class="montadoras__item"><div class="montadoras__logo" aria-hidden="true">Logo 5</div></div>
-          <div class="montadoras__item"><div class="montadoras__logo" aria-hidden="true">Logo 6</div></div>
+        <div class="montadoras__tracks-group">
+          <!-- Linha 1: 11 logos. Conjunto 2 = cópia exata para loop infinito. -->
+          <div class="montadoras__track">
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/500px-Fiat_logo.svg.svg" alt="Fiat" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Audi-Logo_2016.svg" alt="Audi" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/BMW.svg.svg" alt="BMW" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/BYD_Auto_2022_logo.svg" alt="BYD" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Bajaj-logo.svg" alt="Bajaj" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Chery_logo.svg.svg" alt="Chery" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Ducati_red_logo.svg" alt="Ducati" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Ford_Motor_Company_Logo.svg.svg" alt="Ford" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Jac-motors.svg" alt="JAC" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/KIA_logo3.svg.svg" alt="Kia" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Mitsubishi_logo.svg.svg" alt="Mitsubishi" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/500px-Fiat_logo.svg.svg" alt="Fiat" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Audi-Logo_2016.svg" alt="Audi" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/BMW.svg.svg" alt="BMW" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/BYD_Auto_2022_logo.svg" alt="BYD" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Bajaj-logo.svg" alt="Bajaj" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Chery_logo.svg.svg" alt="Chery" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Ducati_red_logo.svg" alt="Ducati" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Ford_Motor_Company_Logo.svg.svg" alt="Ford" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Jac-motors.svg" alt="JAC" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/KIA_logo3.svg.svg" alt="Kia" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Mitsubishi_logo.svg.svg" alt="Mitsubishi" /></div></div>
+          </div>
+          <!-- Linha 2: 11 logos. Conjunto 2 = cópia exata para loop infinito. -->
+          <div class="montadoras__track">
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Nissan_2020_logo.svg" alt="Nissan" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Preto_Vertical.svg" alt="Chevrolet" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Ram-Logo-PNG-Cutout.svg" alt="Ram" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Suzuki_Motor_Corporation_logo.svg.svg" alt="Suzuki" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Zanella.svg" alt="Zanella" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/harley-davidson-logo.svg" alt="Harley-Davidson" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/honda-autos-logo.svg" alt="Honda" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/honda-motos-logo-0.svg" alt="Honda Motos" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/hyundai-logo-1.svg" alt="Hyundai" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/jeep-logo-1.svg" alt="Jeep" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/kawasaki-logo-0.svg" alt="Kawasaki" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Nissan_2020_logo.svg" alt="Nissan" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Preto_Vertical.svg" alt="Chevrolet" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Ram-Logo-PNG-Cutout.svg" alt="Ram" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Suzuki_Motor_Corporation_logo.svg.svg" alt="Suzuki" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/Zanella.svg" alt="Zanella" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/harley-davidson-logo.svg" alt="Harley-Davidson" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/honda-autos-logo.svg" alt="Honda" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/honda-motos-logo-0.svg" alt="Honda Motos" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/hyundai-logo-1.svg" alt="Hyundai" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/jeep-logo-1.svg" alt="Jeep" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/kawasaki-logo-0.svg" alt="Kawasaki" /></div></div>
+          </div>
+          <!-- Linha 3: 11 logos. Conjunto 2 = cópia exata para loop infinito. -->
+          <div class="montadoras__track">
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/land-rover-logo-0.svg" alt="Land Rover" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/logo-yamaha-nova.svg" alt="Yamaha" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/mercedes-benz-logo-0.svg" alt="Mercedes-Benz" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/peugeot-logo-0-1.svg" alt="Peugeot" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/renault-logo-6.svg" alt="Renault" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/royal-enfield-logo-nova.svg" alt="Royal Enfield" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/toyota-logos-brands-logotypes-0.svg" alt="Toyota" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/triumph_motorcycles-logo_brandlogos.net_a8nqa.svg" alt="Triumph" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/volkswagen-vw-logo-16.svg" alt="Volkswagen" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/volvo-logo-0.svg" alt="Volvo" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/subaru-logo-nova.svg" alt="Subaru" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/land-rover-logo-0.svg" alt="Land Rover" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/logo-yamaha-nova.svg" alt="Yamaha" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/mercedes-benz-logo-0.svg" alt="Mercedes-Benz" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/peugeot-logo-0-1.svg" alt="Peugeot" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/renault-logo-6.svg" alt="Renault" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/royal-enfield-logo-nova.svg" alt="Royal Enfield" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/toyota-logos-brands-logotypes-0.svg" alt="Toyota" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/triumph_motorcycles-logo_brandlogos.net_a8nqa.svg" alt="Triumph" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/volkswagen-vw-logo-16.svg" alt="Volkswagen" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/volvo-logo-0.svg" alt="Volvo" /></div></div>
+            <div class="montadoras__item"><div class="montadoras__logo"><img src="static/img/logos-montadoras/subaru-logo-nova.svg" alt="Subaru" /></div></div>
+          </div>
         </div>
       </div>
+      <p class="montadoras__desc fade-in">Trabalhamos com todas montadoras do mundo.</p>
     </section>
 
     <section class="porque" id="porque">
@@ -816,7 +911,9 @@
   </footer>
 
   <!-- TODO: Substituir 555191274091 no link do botão flutuante -->
-  <a class="float-whatsapp" href="https://wa.me/555191274091" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">💬</a>
+  <a class="float-whatsapp" href="https://wa.me/555191274091" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
+    <img src="static/img/whatsapp_1236873.svg" alt="" width="32" height="32" />
+  </a>
 
   <script>
     // Smooth scroll para âncoras
